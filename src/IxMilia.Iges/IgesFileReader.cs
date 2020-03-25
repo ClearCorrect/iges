@@ -446,24 +446,7 @@ namespace IxMilia.Iges
 
         internal static DateTime ParseDateTime(string value, DateTime defaultValue)
         {
-            if (string.IsNullOrEmpty(value))
-            {
-                return DateTime.Now;
-            }
-
-            var match = dateTimeReg.Match(value);
-            if (!match.Success)
-                throw new IgesException("Invalid date/time format");
-            Debug.Assert(match.Groups.Count == 9);
-            int year = int.Parse(match.Groups[1].Value);
-            int month = int.Parse(match.Groups[4].Value);
-            int day = int.Parse(match.Groups[5].Value);
-            int hour = int.Parse(match.Groups[6].Value);
-            int minute = int.Parse(match.Groups[7].Value);
-            int second = int.Parse(match.Groups[8].Value);
-            if (match.Groups[1].Value.Length == 2)
-                year += 1900;
-            return new DateTime(year, month, day, hour, minute, second);
+            return DateTime.Now;
         }
 
         private static void SwallowWhitespace(string str, ref int index)
